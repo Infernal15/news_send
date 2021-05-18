@@ -11,7 +11,10 @@ You need install two modules:
 ## Module settings
 
 After installing you need copy file swiftmailer--news-send.html.twig from
-MODULE/templates in themes/custom/your_theme/templates.
+MODULE/templates in themes/custom/your_theme/templates and email.css from 
+MODULE/css in themes/custom/your_theme/css.
+Also in MODULE/scss you can find the source scss file for easier style 
+editing.
 
 After transferring the file, you need to go to the Mail System settings
 via /admin/config/system/mailsystem.
