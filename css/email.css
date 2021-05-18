@@ -1,0 +1,192 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 90%;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 50px;
+}
+
+.mails-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+}
+
+.node--type-news:nth-child(2) {
+  padding-left: 0px;
+}
+.node--type-news:last-child {
+  padding-right: 0px;
+}
+
+.field--name-field-date {
+  font-family: "Nitti v500", Arial, sans-serif;
+  color: #6c6c6c;
+  font-size: 14px;
+}
+
+.field--name-node-title h2 {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  line-height: 36px;
+  font-family: Karla, sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  color: #171717;
+}
+
+.field--name-body p {
+  font-family: Tiempostextweb, "Times New Roman", sans-serif;
+  line-height: 28px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #171717;
+}
+
+.field--name-node-link {
+  font-family: "Nitti v500", Arial, sans-serif;
+  margin-top: 20px;
+}
+.field--name-node-link a {
+  color: #2d3691;
+  text-decoration: none;
+}
+.field--name-node-link a:hover {
+  color: #2d3691;
+  text-decoration: none;
+}
+.field--name-node-link a::after {
+  content: "→";
+  margin-top: 12px;
+  margin-left: 15px;
+}
+
+.news-block-image {
+  padding-left: 0px;
+}
+
+.news-block-text {
+  padding-right: 0px;
+}
+
+.views-row {
+  width: 70%;
+}
+
+.node--view-mode-teaser {
+  display: flex;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #979797;
+}
+
+.view-content .views-row .field--name-field-image-for-news img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+}
+
+.field--name-field-image-for-news {
+  margin-right: 50px;
+}
+
+.container nav {
+  position: relative;
+}
+.container nav .pagination {
+  margin-left: auto;
+  width: 70%;
+}
+.container nav .pagination .page-link {
+  border: none;
+  color: #2d3691;
+  padding-left: 0px;
+}
+.container nav .pagination .page-link:hover {
+  color: #2d3691;
+  background: none;
+  outline: none;
+}
+.container nav .pagination .page-link:focus {
+  box-shadow: none;
+}
+.container nav .pagination .page-item span {
+  display: none;
+}
+.container nav .pagination .page-item a span {
+  display: block;
+}
+
+.container .view-footer {
+  right: 0;
+  bottom: 0.35em;
+  position: absolute;
+}
+
+.mails-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mail-header, .mail-footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: #171717;
+}
+.mail-header .img-container, .mail-footer .img-container {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+}
+.mail-header .img-container a, .mail-footer .img-container a {
+  color: #fff;
+  text-decoration: none;
+}
+.mail-header .img-container a:hover, .mail-footer .img-container a:hover {
+  text-decoration: none;
+}
+
+.mail-footer {
+  margin-top: auto;
+  color: #fff;
+  font-size: 11px;
+  line-height: 12px;
+}
+
+.title {
+  background: linear-gradient(90deg, #2D3691, #45C896);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Karla, sans-serif;
+  font-size: 40px;
+  line-height: 45px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  display: block;
+}
+
+@font-face {
+  font-family: "Nitti v500";
+  src: url("https://assets.website-files.com/5dced91b6467912d0fa28335/5dcee71313d30e206590e710_nitti-normal-v500.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+}
+
+/*# sourceMappingURL=email.css.map */
