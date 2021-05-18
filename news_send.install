@@ -37,14 +37,6 @@ function news_send_schema(): array {
 }
 
 /**
- * Implements hook_install().
- */
-function news_send_install() {
-  // Use schema API to create database table.
-  drupal_install_schema('news_send');
-}
-
-/**
  * Implements hook_uninstall().
  */
 function news_send_uninstall() {
