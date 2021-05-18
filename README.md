@@ -1,6 +1,6 @@
-#*How install News Send module*#
+# *How install News Send module*
 
-##**Before installing**##
+## Before installing
 
 You need install two modules:
 
@@ -8,7 +8,7 @@ You need install two modules:
 
 2. Mail System - https://www.drupal.org/project/mailsystem
 
-##**Module settings**##
+## Module settings
 
 After installing you need copy file swiftmailer--news-send.html.twig from
 MODULE/templates in themes/custom/your_theme/templates.
