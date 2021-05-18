@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ message.base_path }}/themes/custom/poetic/css/email.css">
+  <title>Document</title>
+</head>
+<body>
+<header class="mail-header">
+  <div class="img-container">
+    <a href="{{ message.base_path }}" target="_blank">
+      <img src="{{ message.base_path }}/sites/default/files/site-logo.png" class="img-fluid d-inline-block align-top">
+    </a>
+  </div>
+</header>
+<main>
+  <h2 class="title">{{ message.subject }}</h2>
+  <div class="mails-container">
+    {{ message.content|raw }}
+  </div>
+</main>
+<footer class="mail-footer">
+  <div>
+    {% if message.daily is same as('0') %}
+      If you wish to receive mail daily (10 a.m.), press
+    {% else %}
+      If you wish to receive mail every hour (10 a.m. - 6 p.m.), press
+    {% endif %}
+    <a href="{{ message.base_path }}/poetic/mailer/changer/{{ message.uuid }}" target="_blank">this link</a>
+  </div>
+  <div>
+    If you want to unsubscribe from our news, press <a href="{{ message.base_path }}/poetic/mailer/delete/{{ message.uuid }}" target="_blank">this link</a> (please, don't, i have wife and kids).
+  </div>
+  <div class="img-container">
+    © Copyright {{ "now"|date("Y") }} Poetic. All Rights Reserved.
+    <a href="{{ message.base_path }}" target="_blank">&nbsp;Visit us.</a>
+  </div>
+</footer>
+</body>
+</html>
+

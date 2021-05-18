@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Implements hook_cron().
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\webform\WebformSubmissionInterface;
+
+/**
+ * Implements hook_cron().
+ */
+function news_send_cron() {
+  $time = date("H");
+  if ($time >= 18 || $time < 10) {
+    \Drupal::service('news_send_services')->sendTestMail(0, '1');
+    \Drupal::service('news_send_services')->clearNewsQueue();
+  }
+}
+
+/**
+ * Hook check updating node of type news and call function for pushing node id.
+ */
+function news_send_node_update(NodeInterface $node) {
+  if ($node->getType() === 'news') {
+    \Drupal::service('news_send_services')->nodeAddToQueue($node->id());
+  }
+}
+
+/**
+ * Hook check adding node of type news and call function for pushing node id.
+ */
+function news_send_node_insert(NodeInterface $node) {
+  if ($node->getType() === 'news') {
+    \Drupal::service('news_send_services')->nodeAddToQueue($node->id());
+  }
+}
+
+/**
+ * Implements hook_mail() for swiftmailer--news-send.html.twig in custom theme.
+ */
+function news_send_mail($key, &$message, $params) {
+  $site_name = \Drupal::config('system.site')->get('name');
+  $site_mail = \Drupal::config('system.site')->get('mail');
+  $host = \Drupal::request()->getSchemeAndHttpHost();
+
+  switch ($key) {
+    case 'news_send':
+      $message['headers']['Reply-To'] = $site_mail;
+      $message['headers']['Content-Type'] = 'text/html';
+      $message['headers']['From'] = $site_name . '<' . $site_mail . '>';
+      $message['base_path'] = $host;
+      $message['subject'] = $params['subject'];
+      $message['content'] = $params['content'];
+      $message['uuid'] = $params['uuid'];
+      $message['daily'] = $params['daily'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function news_send_webform_submission_insert(WebformSubmissionInterface $webform_submission) {
+  if ($webform_submission->getWebform()->id() === "let_s_get_started") {
+    $database = \Drupal::database();
+    $email = $webform_submission->getData()['email'];
+    $query = $database->upsert('news_send')->fields([
+      'email' => $email,
+      'uuid' => hash("sha256", $email),
+      'daily' => '0',
+    ]);
+    $query->key('uuid')->execute();
+  }
+}
+
+/**
+ * Implements hook_theme() for respond.html.twig.
+ *
+ * Hook for processing information from the controller.
+ */
+function news_send_theme($existing, $type, $theme, $path) {
+
+  return [
+    'respond' => [
+      'variables' => [
+        'fields' => '',
+      ],
+    ],
+  ];
+}

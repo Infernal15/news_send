@@ -1,0 +1,7 @@
+services:
+  news_send_services:
+    class: 'Drupal\news_send\Services\NewsSendServices'
+    arguments: [ '@state', '@queue', '@request_stack', '@entity_type.manager', '@news_send.mail', '@database']
+  news_send.mail:
+    class: 'Drupal\news_send\Services\SendMail'
+    arguments: [ '@plugin.manager.mail','@language_manager', '@logger.factory' ]

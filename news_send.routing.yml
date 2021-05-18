@@ -1,0 +1,14 @@
+news_send.change:
+  path: '/poetic/mailer/changer/{uuid}'
+  defaults:
+    _controller:  '\Drupal\news_send\Controller\NewsSendController::changeMailerType'
+  requirements:
+    _permission: 'access content'
+
+news_send.delete:
+  path: '/poetic/mailer/delete/{uuid}'
+  defaults:
+    _controller:  '\Drupal\news_send\Controller\NewsSendController::deleteMailer'
+    _title: 'Delete email mailing'
+  requirements:
+    _permission: 'access content'

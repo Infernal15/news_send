@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Module.install.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function news_send_schema(): array {
+  $schema['news_send'] = [
+    'description' => 'Contain users email for mailing',
+    'fields' => [
+      'uuid' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'daily' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => [
+      'uuid',
+    ],
+  ];
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function news_send_install() {
+  // Use schema API to create database table.
+  drupal_install_schema('news_send');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function news_send_uninstall() {
+  \Drupal::database()->schema()->dropTable('news_send');
+  $queue = \Drupal::queue('ToSend');
+  $queue->deleteQueue();
+  $state = \Drupal::service('state');
+  $state->delete('news_send');
+}
